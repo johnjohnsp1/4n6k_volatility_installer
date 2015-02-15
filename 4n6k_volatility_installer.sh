@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 4n6k_volatility_installer.sh
-# v1.1.1 (2/14/2015)
+# v1.1.2 (2/14/2015)
 # Installs Volatility for Ubuntu Linux with one command.
 # Run this script from the directory in which you'd like to install Volatility.
 # Tested on stock Ubuntu 12.04 + 14.04 + SIFT 3
@@ -246,3 +246,4 @@ main() {
 }
 
 main "$@"
+

@@ -48,7 +48,7 @@ Where Can I Download It?
 ------------------------
 You can download the script from this Github page or by right clicking and saving [this link](https://dl.4n6k.com/p/volinux/4n6k_volatility_installer.sh). 
 
-`MD5 Hash: e0bf55dceb15e277deb72031f7118374`
+`SHA256 Hash: 8931cf3981ee195d14055bf8e10cc54634571e5b372b94bdae86e5f259de7cd2`
 
 Bottom Line?
 ------------
