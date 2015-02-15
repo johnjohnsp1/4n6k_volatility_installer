@@ -192,7 +192,7 @@ aptget_install() {
   apt-get install \
     build-essential libreadline-gplv2-dev libjpeg8-dev zlib1g zlib1g-dev \
     libgdbm-dev libc6-dev libbz2-dev libfreetype6-dev libtool automake \
-    python-dev libjansson-dev libmagic-dev unzip -y --force-yes
+    python-dev libjansson-dev libmagic-dev -y --force-yes
 }
 
 # Shorthand for done message
