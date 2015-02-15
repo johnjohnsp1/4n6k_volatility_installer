@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # 4n6k_volatility_installer.sh
-# v1.1.0 (8/28/2014)
+# v1.1.1 (2/14/2015)
 # Installs Volatility for Ubuntu Linux with one command.
 # Run this script from the directory in which you'd like to install Volatility.
 # Tested on stock Ubuntu 12.04 + 14.04 + SIFT 3
@@ -31,10 +31,14 @@ LOGFILE="${SETUP_DIR}"/"install_vol.log"
 ARCHIVES=('distorm3.zip' 'pycrypto-2.6.1.tar.gz' 'ipython-2.1.0.tar.gz' \
           '2.0.5.tar.gz' 'setuptools-5.7.tar.gz' 'Imaging-1.1.7.tar.gz' \
           'v3.3.0.tar.gz' 'volatility-2.4.tar.gz'                       )
-HASHES=('2cd594169fc96b4442056b7494c09153' '55a61a054aa66812daf5161a0d5d7eda' \
-        '785c7b6364c6a0dd34aa4ea970cf83b9' '05df2ec474a40afd5f84dff94392e36f' \
-        '81f980854a239d60d074d6ba052e21ed' 'fc14a54e1ce02a0225be8854bfba478e' \
-        '11d398f5d5fd352b624eccaf04b59119' '4f9ad730fb2174c90182cc29cb249d20' )
+HASHES=('d311d232e108def8acac0d4f6514e7bc070e37d7aa123ab9a9a05b9322321582' \
+        'f2ce1e989b272cfcb677616763e0a2e7ec659effa67a88aa92b3a65528f60a3c' \
+        'ca86a6308c4b53ea8a040ba776066dc9a7af4ac738ad43ab2059a016c09b0c2d' \
+        '1a403d39c739fa89c08b315fc5854170a51aa5f4f018bd11ff4eda11b613a166' \
+        'a8bbdb2d67532c5b5cef5ba09553cea45d767378e42c7003347e53ebbe70f482' \
+        '895bc7c2498c8e1f9b99938f1a40dc86b3f149741f105cf7c7bd2e0725405211' \
+        'e5f4359082e35ff00ee94af9ee897bb0ab18abf49a2c4fe45968d7a848e5bd83' \
+        '684fdffd79ca4453298ee2eb001137cff802bc4b3dfaaa38c4335321f7cccef1' )
 
 # Program usage dialog
 usage() {
@@ -78,7 +82,7 @@ setup() {
 
 # Download Volatility and its dependencies
 download() {
-  if [[ -a "${ARCHIVES[7]}" && $(md5sum "${ARCHIVES[7]}" | cut -d' ' -f1) \
+  if [[ -a "${ARCHIVES[7]}" && $(sha256sum "${ARCHIVES[7]}" | cut -d' ' -f1) \
     == "${HASHES[7]}" ]]; then
       phantom "Files already downloaded. Skipping..."
   else
@@ -97,13 +101,13 @@ download() {
   fi
 }
 
-# Verify md5 hashes of the downloaded archives
+# Verify sha256 hashes of the downloaded archives
 verify() {
   local index=0
-  for hard_md5 in "${HASHES[@]}"; do
+  for hard_sha256 in "${HASHES[@]}"; do
     local archive ; archive="${ARCHIVES[$index]}"
-    local archive_md5 ; archive_md5=$(md5sum "${archive}" | cut -d' ' -f1)
-    if [[ "$hard_md5" == "$archive_md5" ]]; then
+    local archive_sha256 ; archive_sha256=$(sha256sum "${archive}" | cut -d' ' -f1)
+    if [[ "$hard_sha256" == "$archive_sha256" ]]; then
       phantom "= Hash MATCH for ${archive}."
       let "index++"
     else
@@ -136,7 +140,7 @@ install() {
   # pycrypto
     cd pycrypto-2.6.1 && py_install
   # yara + yara-python
-    cd yara-3.1.0 && chmod +x bootstrap.sh && ./bootstrap.sh && \
+    cd yara-3.3.0 && chmod +x bootstrap.sh && ./bootstrap.sh && \
       ./configure --enable-magic ; make ; make install
     cd yara-python && py_install && ldconfig && cd "${SETUP_DIR}"
   # OpenPyxl
