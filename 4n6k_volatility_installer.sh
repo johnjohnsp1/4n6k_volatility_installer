@@ -119,6 +119,7 @@ verify() {
 
 # Extract the downloaded archives
 extract() {
+  apt-get update && apt-get install unzip tar -y --force-yes
   for archive in "${ARCHIVES[@]}"; do
     local ext ; ext=$(echo "${archive}" | sed 's|.*\.||')
     if [[ "${ext}" =~ ^(tgz|gz)$ ]]; then
@@ -188,7 +189,6 @@ kill_tail() {
 
 # Install required packages from APT
 aptget_install() {
-  apt-get update
   apt-get install \
     build-essential libreadline-gplv2-dev libjpeg8-dev zlib1g zlib1g-dev \
     libgdbm-dev libc6-dev libbz2-dev libfreetype6-dev libtool automake \
@@ -246,4 +246,3 @@ main() {
 }
 
 main "$@"
-

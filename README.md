@@ -48,7 +48,7 @@ Where Can I Download It?
 ------------------------
 You can download the script from this Github page (above). 
 
-`SHA256 Hash: 8931cf3981ee195d14055bf8e10cc54634571e5b372b94bdae86e5f259de7cd2`
+`SHA256 Hash: 83852951edcd43a41856b580e0d925bf552c23c8b4bf19533d9190ef9279f016`
 
 Bottom Line?
 ------------
